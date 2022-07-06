@@ -10,6 +10,31 @@ test('Check if proxy property is assigned correctly', () => {
     expect(testProxy.get("name")).toBe(defaultObj.name);
 });
 
+test('Check if proxy works with key: value pairs', () => {
+
+    const testProxy = proxied<{ [key: string]: string }>({})
+
+    testProxy.subscribe((value) => {
+        console.log(value)
+    })
+
+    testProxy.emit({ "a": "a" })
+    testProxy.emit({ "b": "b" })
+
+    expect(testProxy.get("a")).toBe("a");
+});
+
+test('Update key: value pairs using existing values', () => {
+
+    const testProxy = proxied<{ [key: string]: string }>({})
+
+
+    testProxy.emit({ "a": "a" })
+    testProxy.emit({ "b": testProxy.get("a") + "b" })
+
+    expect(testProxy.get("b")).toBe("ab");
+});
+
 test('Check if emit works correctly', () => {
     const defaultObj = { name: "John", age: 12 }
 
