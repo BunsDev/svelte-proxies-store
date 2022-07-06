@@ -1,0 +1,83 @@
+{
+  "name": "svelte-proxies-store",
+  "version": "0.0.1",
+  "description": "Enchant your Svelte Stores",
+  "keywords": [
+    "svelte",
+    "store",
+    "proxy",
+    "typescript"
+  ],
+  "homepage": "https://github.com/chiuzon/svelte-proxies-store#readme",
+  "bugs": {
+    "url": "https://github.com/chiuzon/svelte-proxies-store/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiuzon/svelte-proxies-store.git"
+  },
+  "license": "MIT",
+  "author": "chiuzon",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "browser": "./dist/index.umd.js",
+  "types": "./dist/types",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && npm run build:types && npm run build:js",
+    "build:js": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly",
+    "test": "jest",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "@rollup/plugin-babel": "5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.4",
+    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/release-notes-generator": "10.0.3",
+    "@types/jest": "^28.1.4",
+    "@types/lodash": "4.14.182",
+    "husky": "^8.0.0",
+    "jest": "^28.1.2",
+    "lint-staged": "^12.4.2",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.74.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "semantic-release": "19.0.3",
+    "typescript": "^4.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
